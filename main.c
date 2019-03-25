@@ -1,14 +1,46 @@
-void Delete(int i,List *PtrL)
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct LNode
 {
-    int j;
-    if(i<1||i>PtrL->Last+1)
+    int data;
+    int order;
+    struct LNode*next;
+}LNode;
+int main()
+{
+    struct LNode *pa,*pb,*head;
+    head=(struct LNode*)malloc(sizeof(LNode));
+    pa=head;
+    int i,m,n;
+    printf("输入人数n和上限m\n");
+    scanf("%d %d",&n,&m);
+    for(i=1;i<=n;i++)
     {
-        printf("不存在第%d个元素"，i);
-        return;
+        pa->next=(struct LNode*)malloc(sizeof(LNode));
+        pa=pa->next;
+        printf("请输入密码\n");
+       scanf("%d",&pa->data);
+        pa->order=i;
     }
-    for(j=i;j<=PtrL->Last;j++)
-        Ptrl->data[j-1]=PtrL->Data[j];
-    PtrL->Last--;
-    return;
+    pa->next=head->next;
+    pa=head->next;
+    free(head);
+    while(pa->next!=pa)
+    {
+        for(i=1;i<m;i++)
+        {
+            pb=pa;
+            pa=pa->next;
+        }
+
+        printf("%d->",pa->order);
+        m=pa->data;
+        pb->next=pa->next;
+        free(pa);
+        pa=pb->next;
+    }
+    printf("%d\n",pa->order);
+    free(pa);
 }
+
 
